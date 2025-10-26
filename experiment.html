@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Images and Hotspots</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <style>
+    #panorama {
+        width: 100%;
+        height: 500px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="panorama"></div>
+
+<script>
+pannellum.viewer('panorama', {
+    "type": "equirectangular",
+    "autoLoad": true,
+    "firstScene": "scene1",  // Set the initial scene to load
+    "scenes": {
+        "scene1": {
+            "title": "Scene 1",
+            "type": "equirectangular",
+            "panorama": "https://pannellum.org/images/alma.jpg",  // First image
+            "hotSpots": [
+                {
+                    "yaw": 0,
+                    "pitch": 0,
+                    "type": "scene",
+                    "text": "Go to Scene 2",  // Tooltip
+                    "sceneId": "scene2"  // Link to scene2
+                }
+            ]
+        },
+        "scene2": {
+            "title": "Scene 2",
+            "type": "equirectangular",
+            "panorama": "https://pannellum.org/images/alma.jpg",  // Second image
+            "hotSpots": [
+                {
+                    "yaw": 45,
+                    "pitch": 5,
+                    "type": "scene",
+                    "text": "Go to Scene 1",  // Tooltip
+                    "sceneId": "scene1"  // Link to scene1
+                }
+            ]
+        }
+    }
+});
+</script>
+
+</body>
+</html>

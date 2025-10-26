@@ -1,0 +1,459 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pannellum Tour 0–16 (no loops)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+  <link rel="stylesheet" href="styles/Ballalompoa.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+</head>
+
+<body>
+  <div class="top-bar">
+    <a href="index.html" class="go-home">← Kembali ke Beranda</a>
+    <h3 class="page-title">Pannellum Virtual Tour (Scenes 0 → 16)</h3>
+    <div class="top-bar__actions">
+      <button class="minimap-btn" onclick="showMinimap()">Tampilkan Minimap</button>
+      <button id="toggleDragBtn" class="minimap-btn">Nonaktifkan Drag</button>
+    </div>
+  </div>
+
+  <!-- Modal Minimap -->
+  <div id="minimapModal" class="minimap-modal" onclick="hideMinimap()">
+    <img src="assets/images/minimap.jpg" alt="Minimap Virtual Tour" class="minimap-img">
+  </div>
+
+  <div id="panorama"></div>
+  <div class="scenes">
+    <!-- Static scene buttons without any loop -->
+    <button onclick="viewer.loadScene('s0')">0</button>
+    <button onclick="viewer.loadScene('s1')">1</button>
+    <button onclick="viewer.loadScene('s2')">2</button>
+    <button onclick="viewer.loadScene('s3')">3</button>
+    <button onclick="viewer.loadScene('s4')">4</button>
+    <button onclick="viewer.loadScene('s5')">5</button>
+    <button onclick="viewer.loadScene('s6')">6</button>
+    <button onclick="viewer.loadScene('s7')">7</button>
+    <button onclick="viewer.loadScene('s8')">8</button>
+    <button onclick="viewer.loadScene('s9')">9</button>
+    <button onclick="viewer.loadScene('s10')">10</button>
+    <button onclick="viewer.loadScene('s11')">11</button>
+    <button onclick="viewer.loadScene('s12')">12</button>
+    <button onclick="viewer.loadScene('s13')">13</button>
+    <button onclick="viewer.loadScene('s14')">14</button>
+    <button onclick="viewer.loadScene('s15')">15</button>
+
+  </div>
+
+  <script>
+
+    // === Konfigurasi manual dengan hotspot eksplisit ===
+    var viewer = pannellum.viewer('panorama', {
+    "default": {
+      "firstScene": "s0",
+      "autoLoad": true,
+      "showControls": true
+    },
+    "scenes": {
+      "s0":  { 
+        "title": "Spot 0",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image0.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s1",  
+          "text": "Ke Spot 1" 
+        },
+        {
+            "pitch": 7.56,
+            "yaw": -91.32,
+            "type": "info",
+            "text": "Timpalaja-Ada satu keunikan lain dalam struktur bola ugi di antara dinding dan atap. Terdapat bidang segitiga atau gevel (gable) yang disebut timpalaja. Dengan bagian timpalaja yang dipasang bersusun ini bisa diketahui status sosial pemilik rumah. Jika timpalaja memiliki tiga atau lima susun, maka tandanya pemilik rumah berasal dari golongan elite. Namun jika timpalaja hanya terdiri dari satu atau dua susun, berarti pemilik rumah berasal dari kalangan biasa. Meski demikian, penggunaan timpalaja untuk menunjukkan status sosial pada masa kini sudah tidak seketat pada zaman dahulu dan jumlah susunannya sudah tidak lagi harus selalu sesuai dengan status sosial. Masyarakat dari segala kalangan dapat memasang timpalaja dengan susunan yang sesuai keinginan.<br><br><em>Sumber:</em> <a href=\"https://id.wikipedia.org/wiki/Bola_Ugi#cite_note-5\" target=\"_blank\" rel=\"noopener noreferrer\">Wikipedia - Bola Ugi</a>",
+            "URL": "https://id.wikipedia.org/wiki/Bola_Ugi#cite_note-5"
+        }
+        ,
+        
+
+      ] },
+      "s1":  { 
+        "title": "Spot 1",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image1.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s2",  
+          "text": "Ke Spot 2" 
+        },
+        
+        
+
+      ] },
+      "s2" :  { 
+        "title": "Spot 2",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image2.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s3",  
+          "text": "Ke Spot 3" 
+        },
+        
+        
+
+      ] },
+        "s3" :  { 
+        "title": "Spot 3",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image3.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s4",  
+          "text": "Ke Spot 4" 
+        },
+        
+        
+
+      ] },
+      "s4" :  { 
+        "title": "Spot 4",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image4.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s5",  
+          "text": "Ke Spot 5" 
+        },
+        
+        
+
+      ] },
+      "s5" :  { 
+        "title": "Spot 5",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image5.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s6",  
+          "text": "Ke Spot 6" 
+        },
+        
+        
+
+      ] },
+      "s6" :  { 
+        "title": "Spot 6",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image6.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s7",  
+          "text": "Ke Spot 7" 
+        },
+        
+        
+
+      ] },
+      "s7" :  { 
+        "title": "Spot 7",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image7.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s8",  
+          "text": "Ke Spot 8" 
+        },
+        
+        
+
+      ] },
+      "s8" :  { 
+        "title": "Spot 8",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image8.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s9",  
+          "text": "Ke Spot 9" 
+        },
+        
+        
+
+      ] },
+      "s9" :  { 
+        "title": "Spot 2",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image9.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s10",  
+          "text": "Ke Spot 10" 
+        },
+        
+        
+
+      ] },
+      "s10" :  { 
+        "title": "Spot 10",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image10.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s",  
+          "text": "Ke Spot 3" 
+        },
+        
+        
+
+      ] },  
+     
+      "s11" :  { 
+        "title": "Spot 11",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image11.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s12",  
+          "text": "Ke Spot 12" 
+        },
+        
+        
+
+      ] },
+      "s12" :  { 
+        "title": "Spot 12",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image12.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s13",  
+          "text": "Ke Spot 13" 
+        },
+        
+        
+
+      ] },
+      "s13" :  { 
+        "title": "Spot 13",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image13.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s14",  
+          "text": "Ke Spot 14" 
+        },
+        
+        
+
+      ] },
+      "s14" :  { 
+        "title": "Spot 14",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image14.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+        "hotSpots": [
+        { 
+          "pitch": 4, 
+          "yaw":-86.54 , 
+          "type": "scene", 
+          "sceneId": "s15",  
+          "text": "Ke Spot 15" 
+        },
+        
+        
+
+      ] },
+      "s15" :  { 
+        "title": "Spot 15",  
+        "type": "equirectangular", 
+        "panorama": "assets/360_images/Image15.jpg", 
+        "pitch": 4, 
+        "yaw":-86.54 , 
+       },
+
+      }
+    });
+
+    // Fungsi untuk menampilkan modal minimap
+    function showMinimap() {
+      document.getElementById('minimapModal').classList.add('active');
+    }
+    function hideMinimap() {
+      document.getElementById('minimapModal').classList.remove('active');
+    }
+
+    // === Menampilkan koordinat pitch dan yaw saat panorama di-klik ===
+    const panoramaEl = document.getElementById('panorama');
+    const coordDiv = document.createElement('div');
+    coordDiv.className = 'coord-hint';
+    coordDiv.textContent = 'Klik panorama untuk koordinat';
+    if (panoramaEl) {
+      panoramaEl.appendChild(coordDiv);
+    } else {
+      document.body.appendChild(coordDiv);
+    }
+    const toggleBtn = document.getElementById('toggleDragBtn');
+    const viewerContainer = typeof viewer.getContainer === 'function'
+      ? viewer.getContainer()
+      : panoramicFallback();
+
+    let dragEnabled = true;
+
+    function panoramicFallback() {
+      return panoramaEl.querySelector('.pnlm-container') || panoramaEl;
+    }
+
+    function setCoordHint(message) {
+      coordDiv.textContent = message;
+    }
+
+    function showCoords(event) {
+      const coords = viewer.mouseEventToCoords(event);
+      if (coords && Number.isFinite(coords.yaw) && Number.isFinite(coords.pitch)) {
+        coordDiv.textContent = `Yaw: ${coords.yaw.toFixed(2)}, Pitch: ${coords.pitch.toFixed(2)}`;
+      } else {
+        const fallbackYaw = typeof viewer.getYaw === 'function' ? viewer.getYaw() : NaN;
+        const fallbackPitch = typeof viewer.getPitch === 'function' ? viewer.getPitch() : NaN;
+        if (Number.isFinite(fallbackYaw) && Number.isFinite(fallbackPitch)) {
+          coordDiv.textContent = `Yaw: ${fallbackYaw.toFixed(2)}, Pitch: ${fallbackPitch.toFixed(2)}`;
+        } else {
+          setCoordHint('Tidak dapat membaca koordinat');
+        }
+      }
+    }
+
+    function handlePointer(event) {
+      if (!dragEnabled) {
+        showCoords(event);
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    }
+
+    function handleScroll(event) {
+      if (!dragEnabled) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+    }
+
+    const wheelListenerOptions = { capture: true, passive: false };
+
+    function disableDrag() {
+      dragEnabled = false;
+      panoramaEl.style.cursor = 'pointer';
+      viewerContainer.style.cursor = 'pointer';
+      viewerContainer.addEventListener('mousedown', handlePointer, true);
+      viewerContainer.addEventListener('touchstart', handlePointer, true);
+      viewerContainer.addEventListener('click', handlePointer, true);
+      viewerContainer.addEventListener('touchend', handlePointer, true);
+      viewerContainer.addEventListener('wheel', handleScroll, wheelListenerOptions);
+      toggleBtn.textContent = 'Aktifkan Drag';
+      setCoordHint('Mode koordinat aktif — klik panorama');
+    }
+
+    function enableDrag() {
+      dragEnabled = true;
+      panoramaEl.style.cursor = 'grab';
+      viewerContainer.style.cursor = 'grab';
+      viewerContainer.removeEventListener('mousedown', handlePointer, true);
+      viewerContainer.removeEventListener('touchstart', handlePointer, true);
+      viewerContainer.removeEventListener('click', handlePointer, true);
+      viewerContainer.removeEventListener('touchend', handlePointer, true);
+      viewerContainer.removeEventListener('wheel', handleScroll, wheelListenerOptions);
+      toggleBtn.textContent = 'Nonaktifkan Drag';
+      setCoordHint('Klik panorama untuk koordinat');
+    }
+
+    toggleBtn.onclick = function () {
+      if (dragEnabled) {
+        disableDrag();
+      } else {
+        enableDrag();
+      }
+    };
+
+    // Set cursor awal dan pesan bawaan
+    enableDrag();
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.hotspot-alert.is-open').forEach((node) => node.classList.remove('is-open'));
+    });
+  </script>
+
+</body>
+
+</html>

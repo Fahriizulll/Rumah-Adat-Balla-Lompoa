@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contoh Sederhana Background Blend</title>
+  <style>
+    /* Aturan dasar halaman */
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #eef3f8;
+      color: #111;
+    }
+
+    /*
+      Kita membuat kotak dengan gambar latar.
+      Tambahkan warna transparan lalu campur dengan gambar.
+    */
+    .blend-box {
+      padding: 40px 20px;
+      background-image: url("assets/images/images_mapping.jpg");
+      background-size: cover;
+      background-position: center;
+      background-color: rgba(30, 80, 120, 0.6); /* warna transparan */
+      background-blend-mode: multiply; /* mencampur warna dengan foto */
+      color: #f9fcff;
+    }
+
+    .blend-box h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    .steps {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="blend-box">
+    <h1>Belajar Background Blend</h1>
+    <p>
+      Foto di belakang diberi warna transparan, lalu dicampur supaya teks mudah dibaca.
+      Ubah angka pada warna <code>rgba()</code> untuk melihat perbedaan hasilnya.
+    </p>
+  </div>
+
+  <div class="steps">
+    <h2>Langkah Sangat Dasar</h2>
+    <ol>
+      <li>Gunakan <code>background-image</code> pada elemen.</li>
+      <li>Tambahkan warna transparan dengan <code>background-color</code>.</li>
+      <li>Pakai <code>background-blend-mode</code> untuk mencampur warna dan foto.</li>
+    </ol>
+  </div>
+</body>
+</html>

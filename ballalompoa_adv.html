@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <!-- Metadata dasar untuk responsivitas dan karakter -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pannellum Tour 0..53</title>
+    
+    <!-- Pannellum: library untuk panorama 360° -->
+    <link rel="stylesheet" href="https://unpkg.com/pannellum/build/pannellum.css" />
+    <link rel="stylesheet" href="css/ballalompoa_adv.css">
+    <script src="https://unpkg.com/pannellum/build/pannellum.js"></script>
+</head>
+<body>
+    <!-- Kontainer utama: sidebar dan panorama -->
+    <div class="app">
+        <!-- Sidebar navigasi scene -->
+        <aside id="sidebar">
+            <h1>Virtual Tour (0 → 53)</h1>
+            <p class="meta">
+                Letakkan file panorama equirectangular di <code>./panos/</code> dengan nama <code>0.jpg</code> sampai <code>53.jpg</code>.<br>
+                Gunakan grid untuk lompat scene atau tombol panah untuk maju/mundur.
+            </p>
+            <div id="sceneGrid" class="grid"></div>
+            <div class="controls">
+                <button id="prevBtn" title="Scene sebelumnya (←)">◀ Prev</button>
+                <button id="nextBtn" title="Scene berikutnya (→)">Next ▶</button>
+                <p class="tip">Keyboard: ← / → untuk pindah scene · Klik & drag untuk melihat · Scroll untuk zoom</p>
+            </div>
+        </aside>
+        <!-- Area panorama 360° -->
+        <main id="panorama"></main>
+    </div>
+
+    <script>
+        // === Bagian konfigurasi scene ===
+        const START_INDEX = 0;   // Nomor scene pertama
+        const END_INDEX = 53;    // Nomor scene terakhir
+
+        // Fungsi path file panorama berdasarkan nomor
+        const panoPath = (i) => `panos/image${i}.jpg`;
+
+        // Override per scene (opsional, misal yaw/pitch/hfov)
+        const overrides = {};
+
+        // Fungsi ID scene
+        const sceneId = (i) => `scene-${i}`;
+
+        // Konfigurasi utama Pannellum
+        const config = {
+            default: {
+                firstScene: sceneId(START_INDEX),
+                autoLoad: true,
+                showControls: true,
+                compass: false,
+                hfov: 110,
+                yaw: 0,
+                pitch: 0
+            },
+            scenes: {}
+        };
+
+        // Membuat konfigurasi untuk setiap scene
+        for (let i = START_INDEX; i <= END_INDEX; i++) {
+            const base = { yaw: 0, pitch: 0, hfov: 110, ...overrides[i] };
+            config.scenes[sceneId(i)] = {
+                title: `Spot ${i}`,
+                type: 'equirectangular',
+                panorama: panoPath(i),
+                yaw: base.yaw,
+                pitch: base.pitch,
+                hfov: base.hfov,
+                hotSpots: [
+                    // Hotspot untuk kembali ke scene sebelumnya
+                    ...(i > START_INDEX ? [{
+                        yaw: 180, pitch: 0,
+                        type: 'scene', text: `Kembali ke ${i - 1}`,
+                        sceneId: sceneId(i - 1)
+                    }] : []),
+                    // Hotspot untuk lanjut ke scene berikutnya
+                    ...(i < END_INDEX ? [{
+                        yaw: 0, pitch: 0,
+                        type: 'scene', text: `Ke ${i + 1}`,
+                        sceneId: sceneId(i + 1)
+                    }] : []),
+                    // Label nomor scene
+                    {
+                        yaw: -90, pitch: 0, type: 'info', text: `#${i}`
+                    }
+                ]
+            };
+        }
+
+        // Inisialisasi viewer Pannellum
+        const viewer = pannellum.viewer('panorama', config);
+
+        // === Bagian UI: grid tombol scene ===
+        const grid = document.getElementById('sceneGrid');
+        for (let i = START_INDEX; i <= END_INDEX; i++) {
+            const b = document.createElement('button');
+            b.className = 'scene-btn';
+            b.textContent = i;
+            b.dataset.scene = sceneId(i);
+            b.onclick = () => viewer.loadScene(sceneId(i));
+            grid.appendChild(b);
+        }
+
+        // Fungsi untuk menandai tombol scene yang aktif
+        const setActive = () => {
+            const current = viewer.getScene();
+            document.querySelectorAll('.scene-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.scene === current);
+            });
+        };
+        viewer.on('load', setActive);
+
+        // Navigasi tombol prev/next dan keyboard
+        const idxFromScene = (sid) => parseInt(sid.split('-')[1], 10);
+        document.getElementById('prevBtn').onclick = () => {
+            const i = idxFromScene(viewer.getScene());
+            if (i > START_INDEX) viewer.loadScene(sceneId(i - 1));
+        };
+        document.getElementById('nextBtn').onclick = () => {
+            const i = idxFromScene(viewer.getScene());
+            if (i < END_INDEX) viewer.loadScene(sceneId(i + 1));
+        };
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft')  document.getElementById('prevBtn').click();
+            if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
+        });
+
+        // Highlight scene aktif saat pertama kali load
+        setActive();
+    </script>
+</body>
+</html>
