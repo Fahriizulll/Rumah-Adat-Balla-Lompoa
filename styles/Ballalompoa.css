@@ -1,0 +1,190 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #0b1020;
+  color: #e6edf3;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  padding-top: 96px;
+}
+
+/* Panorama menyesuaikan tinggi layar */
+#panorama {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 70vh; /* minimal agar tombol tetap terlihat */
+  border-top: 2px solid #1f2937;
+  position: relative;
+}
+
+/* Container tombol */
+.scenes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px;
+  justify-content: center;
+  background: #111831;
+  border-top: 1px solid #1f2a44;
+}
+
+/* Tombol scene */
+.scenes button {
+  padding: 6px 10px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.scenes button:hover {
+  border-color: #22d3ee;
+  color: #22d3ee;
+}
+
+/* Supaya tombol tetap terlihat di layar kecil */
+@media (max-height: 600px) {
+  #panorama {
+    min-height: 60vh;
+  }
+}
+
+.top-bar {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  right: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  z-index: 1000;
+}
+
+.go-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  color: #22d3ee;
+  background: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.go-home:hover {
+  background: rgba(34, 211, 238, 0.16);
+  transform: translateY(-1px);
+}
+
+.minimap-btn {
+  background: #22d3ee;
+  color: #001018;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(34,211,238,.18);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.minimap-btn:hover {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.top-bar__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.page-title {
+  margin: 0;
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: .02em;
+}
+
+.minimap-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(11,16,32,0.85);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+.minimap-modal.active {
+  display: flex;
+}
+
+.minimap-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(34,211,238,.25);
+  background: #fff;
+}
+
+.coord-hint {
+  position: fixed;
+  right: 28px;
+  bottom: 32px;
+  background: rgba(17, 24, 49, 0.85);
+  color: #22d3ee;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-family: monospace;
+  pointer-events: none;
+  z-index: 5;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+/* 
+.custom-hotspot span {
+  visibility: hidden;
+  position: absolute;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  max-width: 200px;
+  padding: 5px 10px;
+  margin-left: -220px;
+  cursor: default;
+}
+
+.custom-hotspot:hover span {
+  visibility: visible;
+}
+
+.custom-hotspot:hover span::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+  bottom: -20px;
+  left: -10px;
+  margin: 0 50%;
+} */
