@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model 3D Rumah Adat Baruga</title>
+    <link rel="stylesheet" href="../styles/Bagan.css">
+    <link rel="stylesheet" href="../styles/Modeling3D.css">
+</head>
+<body>
+    <div class="top-bar">
+        <a class="go-home" href="../index.html">← Kembali ke Beranda</a>
+        <h3 class="page-title">Model 3D Rumah Adat Baruga</h3>
+        <div class="top-bar__actions">
+            <button id="resetViewBtn" class="minimap-btn" type="button">Reset Kamera</button>
+        </div>
+    </div>
+    <main class="viewer-container">
+        <div id="viewer" aria-label="Model 3D Rumah Adat Baruga"></div>
+    </main>
+    <div class="scenes">
+        <a href="index.html"><button>1</button></a>
+        <a href=""><button>2</button></a>
+    </div>
+    <footer class="page-footer">
+        © 2025 · Tur Virtual Rumah Adat Baruga · Dibangun dengan Pannellum 360°
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        const viewer = document.getElementById('viewer');
+        const resetButton = document.getElementById('resetViewBtn');
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xf0f0f0);
+
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        viewer.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        if (resetButton) {
+            resetButton.disabled = true;
+            resetButton.addEventListener('click', () => {
+                controls.reset();
+                controls.update();
+                renderer.render(scene, camera);
+            });
+        }
+
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        const loader = new THREE.GLTFLoader();
+        loader.load('KELOMPOK 1_SRI MULYANI.glb', (gltf) => {
+            const model = gltf.scene;
+            scene.add(model);
+
+            const box = new THREE.Box3().setFromObject(model);
+            const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = THREE.MathUtils.degToRad(camera.fov);
+            let cameraDistance = maxDim / (2 * Math.tan(fov / 2));
+
+            if (!Number.isFinite(cameraDistance) || cameraDistance === 0) {
+                cameraDistance = 10;
+            }
+
+            cameraDistance *= 1.5;
+
+            const direction = new THREE.Vector3(1, 0.6, 1).normalize();
+            camera.position.copy(center.clone().add(direction.multiplyScalar(cameraDistance)));
+            camera.near = Math.max(cameraDistance / 100, 0.01);
+            camera.far = cameraDistance * 100;
+            camera.updateProjectionMatrix();
+
+            controls.minDistance = cameraDistance * 0.2;
+            controls.maxDistance = cameraDistance * 5;
+            controls.target.copy(center);
+            controls.update();
+            controls.saveState();
+
+            if (resetButton) {
+                resetButton.disabled = false;
+            }
+        }, undefined, (error) => {
+            console.error(error);
+            if (resetButton) {
+                resetButton.disabled = true;
+            }
+        });
+
+        camera.position.set(0, 2, 8);
+
+        function resizeRenderer() {
+            const width = viewer.clientWidth || window.innerWidth;
+            const height = viewer.clientHeight || window.innerHeight;
+
+            if (width === 0 || height === 0) {
+                return;
+            }
+
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        }
+
+        resizeRenderer();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            resizeRenderer();
+        });
+    </script>
+</body>
+</html>
