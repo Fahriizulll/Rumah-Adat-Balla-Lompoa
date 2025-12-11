@@ -1,0 +1,115 @@
+/* === ROOT THEME (import dari style utama) === */
+:root {
+    --bg: #0c111f;
+    --ink: #f0f3f7;
+    --muted: #aab8ca;
+    --panel: #141b2f;
+    --line: #1f2b47;
+    --accent: #4fd1c5;
+    --accent-warm: #fbbf24;
+  }
+  
+  /* === TOP BAR === */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .page-title {
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  /* tombol kembali */
+  .go-home {
+    text-decoration: none;
+    color: var(--accent);
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(79, 209, 197, 0.6);
+    transition: 0.2s;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .go-home:hover {
+    background: rgba(79, 209, 197, 0.20);
+    transform: translateY(-1px);
+  }
+  
+  /* actions */
+  .top-bar__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* === SCENES SWITCHER === */
+  .scenes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 24px 0 12px;
+  }
+  
+  .scenes button {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--accent);
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .scenes button:hover {
+    background: rgba(79, 209, 197, 0.15);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  .scenes a {
+    text-decoration: none;
+  }
+  
+  /* === FOOTER === */
+  .page-footer {
+    margin-top: 24px;
+    padding: 28px 12px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+  }
+  
+  .page-footer strong {
+    color: var(--accent);
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .page-title {
+      font-size: 16px;
+    }
+  }
+
+  body {
+    background: linear-gradient(180deg, #0c111f 0%, #0a0f1b 50%, #0c111f 100%);
+    color: var(--ink);
+    margin: 0;
+  }
+    
+  

@@ -1,0 +1,99 @@
+/* === ROOT (menggunakan tema utama) === */
+:root {
+    --bg: #0c111f;
+    --ink: #f0f3f7;
+    --muted: #aab8ca;
+    --panel: #141b2f;
+    --line: #1f2b47;
+    --accent: #4fd1c5;
+    --accent-warm: #fbbf24;
+  }
+  
+  /* === VIEWER CONTAINER === */
+  .viewer-container {
+    max-width: 1100px;
+    margin: 26px auto;
+    padding: 0 16px;
+  }
+  
+  #viewer {
+    width: 100%;
+    height: 620px;
+    border-radius: 16px;
+    background: #10192a;
+    border: 1px solid var(--line);
+    box-shadow: 0 0 22px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* === RESET CAMERA BUTTON === */
+  .minimap-btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--accent);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+  }
+  
+  .minimap-btn:hover:not(:disabled) {
+    background: rgba(79, 209, 197, 0.15);
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  
+  .minimap-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  
+  /* === LOADING STATE (Sebelum GLB muncul) === */
+  #viewer::before {
+    content: "Memuat Model 3D...";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  /* Hilang setelah model terload */
+  .loaded #viewer::before {
+    display: none;
+  }
+  
+  /* === RESPONSIVE === */
+  @media (max-width: 640px) {
+    #viewer {
+      height: 420px;
+    }
+  
+    .minimap-btn {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+  }
+  
+  #viewer {
+    width: 100%;
+    height: 620px;
+    border-radius: 16px;
+  
+    /* ✨ Background baru yang lebih estetik */
+    background: radial-gradient(circle at 50% 50%, #152033 0%, #0c111f 100%);
+    
+    border: 1px solid var(--line);
+    box-shadow: 0 0 28px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    position: relative;
+  }
+  
